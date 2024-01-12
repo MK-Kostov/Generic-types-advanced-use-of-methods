@@ -121,41 +121,41 @@
 //}
 
 
-var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
-Tuple<int, int> minAndMax = GetMinAndMax(numbers);
+//var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
+//Tuple<int, int> minAndMax = GetMinAndMax(numbers);
 
-var twoStrings = new Tuple<string, string>("aaa", "bbb");
-var differentTypes = new Tuple<string, int>("aaa", 1);
-var threeItems = new Tuple<string, int, bool>("aaa", 1, false);
-Console.WriteLine("Smallest number is " + minAndMax.Item1);
-Console.WriteLine("Largest number is " + minAndMax.Item2);
+//var twoStrings = new Tuple<string, string>("aaa", "bbb");
+//var differentTypes = new Tuple<string, int>("aaa", 1);
+//var threeItems = new Tuple<string, int, bool>("aaa", 1, false);
+//Console.WriteLine("Smallest number is " + minAndMax.Item1);
+//Console.WriteLine("Largest number is " + minAndMax.Item2);
 
-Console.ReadKey();
+//Console.ReadKey();
 
-Tuple<int, int> GetMinAndMax(IEnumerable<int> input)
-{
-	if (!input.Any())
-	{
-		throw new InvalidOperationException($"The input collection cannot be empty.");
-	}
-	int min = input.First();
-	int max = input.First();
+//Tuple<int, int> GetMinAndMax(IEnumerable<int> input)
+//{
+//	if (!input.Any())
+//	{
+//		throw new InvalidOperationException($"The input collection cannot be empty.");
+//	}
+//	int min = input.First();
+//	int max = input.First();
 
-	foreach (var number in input)
-	{
-		if (number > max)
-		{
-			max = number;
-		}
-		if (number < min)
-		{
-			min = number;
-		}
-	}
+//	foreach (var number in input)
+//	{
+//		if (number > max)
+//		{
+//			max = number;
+//		}
+//		if (number < min)
+//		{
+//			min = number;
+//		}
+//	}
 
-	return new Tuple<int, int>(min, max);
+//	return new Tuple<int, int>(min, max);
 
-}
+//}
 
 //public class SimpleTuple<T1, T2>
 //{
@@ -168,26 +168,42 @@ Tuple<int, int> GetMinAndMax(IEnumerable<int> input)
 //	public T2 Item2 { get; }
 //}
 
-public class SimpleTuple<T1, T2, T3>
-{
-	public SimpleTuple(T1 item1, T2 item2, T3 item3)
-	{
-		Item1 = item1;
-		Item2 = item2;
-		Item3 = item3;
-	}
-	public T1 Item1 { get; }
-	public T2 Item2 { get; }
-	public T3 Item3 { get; }
-}
+//public class SimpleTuple<T1, T2, T3>
+//{
+//	public SimpleTuple(T1 item1, T2 item2, T3 item3)
+//	{
+//		Item1 = item1;
+//		Item2 = item2;
+//		Item3 = item3;
+//	}
+//	public T1 Item1 { get; }
+//	public T2 Item2 { get; }
+//	public T3 Item3 { get; }
+//}
 
-public class TwoStrings
+//public class TwoStrings
+//{
+//	public TwoStrings(string string1, string string2)
+//	{
+//		String1 = string1;
+//		String2 = string2;
+//	}
+//	public string String1 { get; }
+//	public string String2 { get; }
+//}
+
+using System.Collections;
+ArrayList ints = new ArrayList { 2, 3, 4, 5 };
+
+int sum = 0;
+foreach (object number in ints)
 {
-	public TwoStrings(string string1, string string2)
-	{
-		String1 = string1;
-		String2 = string2;
-	}
-	public string String1 { get; }
-	public string String2 { get; }
+	sum += (int)number;
 }
+ArrayList strings = new ArrayList { "a", "b", "c" };
+
+ArrayList variousItems = new ArrayList { 1, false, "abc", new DateTime() };
+object[] objects = new object[] { 1, false, "abc", new DateTime() };
+
+
+Console.ReadKey();
