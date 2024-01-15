@@ -208,14 +208,37 @@
 
 //Console.ReadKey();
 
-var ints = new List<int> { 1, 2, 3 };
-ints.AddToFront(10);
-ints.AddToFront(11);
+//var ints = new List<int> { 1, 2, 3 };
+//ints.AddToFront(10);
+//ints.AddToFront(11);
 
+//Console.ReadKey();
+
+//static class ListExtension
+//{
+//	public static void AddToFront<T>(this List<T> list, T item)
+//	{
+//		list.Insert(0, item);
+//	}
+//}
+
+var decimals = new List<decimal> { 1.1m, 0.5m, 22.5m, 12m };
+var ints = decimals.ConvertTo();
 Console.ReadKey();
 
-static class ListExtension
+static class ListExtensions
 {
+	public static List<TTarget> ConvertTo<TSourse, TTarget>(this List<decimal> input)
+	{
+		var result = new List<TTarget>();
+
+		foreach (var item in input)
+		{
+			result.Add((TTarget)item);
+		}
+
+		return result;
+	}
 	public static void AddToFront<T>(this List<T> list, T item)
 	{
 		list.Insert(0, item);
