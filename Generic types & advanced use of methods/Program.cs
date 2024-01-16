@@ -222,25 +222,70 @@
 //	}
 //}
 
-var decimals = new List<decimal> { 1.1m, 0.5m, 22.5m, 12m };
-var ints = decimals.ConvertTo();
+//var decimals = new List<decimal> { 1.1m, 0.5m, 22.5m, 12m };
+//var ints = decimals.ConvertTo<decimal, int>();
+
+//var floats = new List<float> { 1.4f, -100.01f };
+//List<long> longs = floats.ConvertTo<float, long>();
+
+//var dates = new List<DateTime> { new DateTime(2023, 5, 1) };
+//var ints2 = dates.ConvertTo<DateTime, int>();
+
+
+//Console.ReadKey();
+
+//static class ListExtensions
+//{
+//	public static List<TTarget> ConvertTo<TSource, TTarget>(this List<TSource> input)
+//	{
+//		var result = new List<TTarget>();
+
+//		foreach (var item in input)
+//		{
+//			TTarget itemAfterCasting = (TTarget)Convert.ChangeType(item, typeof(TTarget));
+//			result.Add(itemAfterCasting);
+//		}
+
+//		return result;
+//	}
+//	public static void AddToFront<T>(this List<T> list, T item)
+//	{
+//		list.Insert(0, item);
+//	}
+//}
+
+//var points = CreateCollectionOfRandomLength<Point>(100);
+var dates = CreateCollectionOfRandomLength<DateTime>(100);
+
 Console.ReadKey();
 
-static class ListExtensions
+IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
 {
-	public static List<TTarget> ConvertTo<TSourse, TTarget>(this List<decimal> input)
-	{
-		var result = new List<TTarget>();
 
-		foreach (var item in input)
-		{
-			result.Add((TTarget)item);
-		}
 
-		return result;
-	}
-	public static void AddToFront<T>(this List<T> list, T item)
+	var length = new Random().Next(maxLength + 1);
+
+	var result = new List<T>();
+
+	for (int i = 0; i < length; ++i)
 	{
-		list.Insert(0, item);
+		result.Add(new T());
+
+
 	}
+
+	return result;
+}
+
+public class Point
+{
+
+	public Point(int x, int y)
+	{
+		X = x;
+		Y = y;
+	}
+
+	public int X { get; }
+	public int Y { get; }
 }
