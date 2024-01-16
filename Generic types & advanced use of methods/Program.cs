@@ -298,20 +298,30 @@
 //	public int Y { get; }
 //}
 
+var numbers = new List<int> { 5, 1, 7, 2 };
+numbers.Sort();
+
+var words = new List<string> { "ddd", "aaa", "ccc", "bbb" };
+words.Sort();
+
+
+
 var people = new List<Person>
 {
 	new Person{ Name = "John", YearOfBirth = 1980},
-	new Person { Name = "Anna", YearOfBirth = 1815},
-	new Person { Name = "Bill", YearOfBirth = 2150},
+	new Person { Name = "Anna", YearOfBirth = 1915},
+	new Person { Name = "Bill", YearOfBirth = 2011},
 
 };
+
+people.Sort();
 
 
 var employees = new List<Employee>
 	{
 	new Employee{ Name = "John", YearOfBirth = 1980},
-	new Employee { Name = "Anna", YearOfBirth = 1815},
-	new Employee { Name = "Bill", YearOfBirth = 2150},
+	new Employee { Name = "Anna", YearOfBirth = 1915},
+	new Employee { Name = "Bill", YearOfBirth = 2011},
 	};
 
 var validPeople = GetOnlyValid(people);
@@ -339,11 +349,25 @@ IEnumerable<TPerson> GetOnlyValid<TPerson>(IEnumerable<TPerson> persons) where T
 
 	return result;
 }
-public class Person
+public class Person : IComparable<Person>
 {
 
 	public string Name { get; init; }
 	public int YearOfBirth { get; init; }
+
+	public int CompareTo(Person other)
+	{
+		if (YearOfBirth < other.YearOfBirth)
+		{
+			return 1;
+		}
+		else if (YearOfBirth > other.YearOfBirth)
+		{
+			return -1;
+		}
+
+		return 0;
+	}
 }
 
 public class Employee : Person
