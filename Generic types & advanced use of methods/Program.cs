@@ -256,43 +256,98 @@
 
 //var points = CreateCollectionOfRandomLength<Point>(100);
 
-using System.Diagnostics;
+//using System.Diagnostics;
+//using System.Threading.Channels;
 
-Stopwatch stopwatch = Stopwatch.StartNew(); ;
+//Stopwatch stopwatch = Stopwatch.StartNew(); ;
 
-var dates = CreateCollectionOfRandomLength<DateTime>(0);
+//var dates = CreateCollectionOfRandomLength<DateTime>(0);
 
-stopwatch.Stop();
-Console.WriteLine($"Execution took {stopwatch.ElapsedMilliseconds} ms.");
+//stopwatch.Stop();
+//Console.WriteLine($"Execution took {stopwatch.ElapsedMilliseconds} ms.");
+//Console.ReadKey();
+
+//IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
+//{
+
+
+//	var length = 100000000; /*new Random().Next(maxLength + 1);*/
+
+//	var result = new List<T>(length);
+
+//	for (int i = 0; i < length; ++i)
+//	{
+//		result.Add(new T());
+
+
+//	}
+
+//	return result;
+//}
+
+//public class Point
+//{
+
+//	public Point(int x, int y)
+//	{
+//		X = x;
+//		Y = y;
+//	}
+
+//	public int X { get; }
+//	public int Y { get; }
+//}
+
+var people = new List<Person>
+{
+	new Person{ Name = "John", YearOfBirth = 1980},
+	new Person { Name = "Anna", YearOfBirth = 1815},
+	new Person { Name = "Bill", YearOfBirth = 2150},
+
+};
+
+
+var employees = new List<Employee>
+	{
+	new Employee{ Name = "John", YearOfBirth = 1980},
+	new Employee { Name = "Anna", YearOfBirth = 1815},
+	new Employee { Name = "Bill", YearOfBirth = 2150},
+	};
+
+var validPeople = GetOnlyValid(people);
+var validEmployees = GetOnlyValid(employees);
+
+foreach (var employee in validEmployees)
+{
+	employee.GoToWork();
+}
+
+
 Console.ReadKey();
 
-IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
+IEnumerable<TPerson> GetOnlyValid<TPerson>(IEnumerable<TPerson> persons) where TPerson : Person
 {
+	var result = new List<TPerson>();
 
-
-	var length = 100000000; /*new Random().Next(maxLength + 1);*/
-
-	var result = new List<T>(length);
-
-	for (int i = 0; i < length; ++i)
+	foreach (var person in persons)
 	{
-		result.Add(new T());
-
-
+		if (person.YearOfBirth > 1900 && person.YearOfBirth < DateTime.Now.Year)
+		{
+			result.Add(person);
+		}
 	}
 
 	return result;
 }
-
-public class Point
+public class Person
 {
 
-	public Point(int x, int y)
-	{
-		X = x;
-		Y = y;
-	}
-
-	public int X { get; }
-	public int Y { get; }
+	public string Name { get; init; }
+	public int YearOfBirth { get; init; }
 }
+
+public class Employee : Person
+{
+	public void GoToWork() => Console.WriteLine("Going to work");
+}
+
