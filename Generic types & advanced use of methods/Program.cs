@@ -255,17 +255,24 @@
 //}
 
 //var points = CreateCollectionOfRandomLength<Point>(100);
-var dates = CreateCollectionOfRandomLength<DateTime>(100);
 
+using System.Diagnostics;
+
+Stopwatch stopwatch = Stopwatch.StartNew(); ;
+
+var dates = CreateCollectionOfRandomLength<DateTime>(0);
+
+stopwatch.Stop();
+Console.WriteLine($"Execution took {stopwatch.ElapsedMilliseconds} ms.");
 Console.ReadKey();
 
 IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
 {
 
 
-	var length = new Random().Next(maxLength + 1);
+	var length = 100000000; /*new Random().Next(maxLength + 1);*/
 
-	var result = new List<T>();
+	var result = new List<T>(length);
 
 	for (int i = 0; i < length; ++i)
 	{
