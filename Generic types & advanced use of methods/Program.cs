@@ -453,10 +453,10 @@
 
 var numbers = new[] { 1, 4, 7, 19, 2 };
 //Func<int, bool> predicate1 = IsLargerThan10;
-Console.WriteLine("IsAnyLargerThan10? " + IsAny(numbers, IsLargerThan10));
+Console.WriteLine("IsAnyLargerThan10? " + IsAny(numbers, n => n > 10));
 
 //Func<int, bool> predicate2 = IsEven;
-Console.WriteLine("IsAnyEven? " + IsAny(numbers, IsEven));
+Console.WriteLine("IsAnyEven? " + IsAny(numbers, n => n % 2 == 0));
 
 Func<int, DateTime, string, decimal> someFunc;
 Action<string, string, bool> someAction;
@@ -476,12 +476,11 @@ bool IsAny(IEnumerable<int> numbers,
 	return false;
 }
 
-bool IsLargerThan10(int number )
-{
-	return number > 10;
-}
-bool IsEven(int number)
-{
-	return number % 2 == 0;
-}
-
+//bool IsLargerThan10(int number)
+//{
+//	return number > 10;
+//}
+//bool IsEven(int number)
+//{
+//	return number % 2 == 0;
+//}
